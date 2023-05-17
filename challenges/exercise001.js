@@ -22,7 +22,6 @@ export function addVAT(originalPrice, vatRate) {
 		throw new Error('originalPrice is requied');
 	if (vatRate === undefined) throw new Error('vatRate is required');
 	if (vatRate === 0) return originalPrice;
-	//if num % 1 != 0
 	const newPrice = originalPrice + (originalPrice * vatRate/100);
 	if (newPrice % 1 !== 0)
 	  return Number(newPrice.toFixed(2));
@@ -33,7 +32,10 @@ export function getSalePrice(originalPrice, reduction) {
 	if (originalPrice === undefined)
 		throw new Error('originalPrice is required');
 	if (reduction === undefined) throw new Error('reduction is required');
-	// Add your code here!
+	const newPrice = originalPrice - originalPrice * reduction/100;
+	if (newPrice % 1 !== 0)
+	  return Number(newPrice.toFixed(2));
+	return Number(newPrice.toFixed(0));
 }
 
 export function getMiddleCharacter(str) {

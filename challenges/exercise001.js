@@ -47,12 +47,15 @@ export function getMiddleCharacter(str) {
 
 export function reverseWord(word) {
 	if (word === undefined) throw new Error('word is required');
-	// Add your code here!
+	return word.split('').reverse().join('');
 }
 
 export function reverseAllWords(words) {
 	if (words === undefined) throw new Error('words is required');
-	// Add your code here!
+	for (let j=0; j<words.length;j++){
+	  words[j] = words[j].split('').reverse().join('');
+	}
+	return words;
 }
 
 export function countLinuxUsers(users) {

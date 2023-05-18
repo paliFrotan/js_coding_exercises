@@ -13,7 +13,6 @@ export function capitalize(word) {
 export function generateInitials(firstName, lastName) {
 	if (firstName === undefined) throw new Error('firstName is required');
 	if (lastName === undefined) throw new Error('lastName is required');
-	 
 	return firstName[0]+'.'+lastName[0];
 }
 
@@ -24,7 +23,7 @@ export function addVAT(originalPrice, vatRate) {
 	if (vatRate === 0) return originalPrice;
 	const newPrice = originalPrice + (originalPrice * vatRate/100);
 	if (newPrice % 1 !== 0)
-	  return Number(newPrice.toFixed(2));
+		return Number(newPrice.toFixed(2));
 	return Number(newPrice.toFixed(0));
 }
 
@@ -34,14 +33,14 @@ export function getSalePrice(originalPrice, reduction) {
 	if (reduction === undefined) throw new Error('reduction is required');
 	const newPrice = originalPrice - originalPrice * reduction/100;
 	if (newPrice % 1 !== 0)
-	  return Number(newPrice.toFixed(2));
+		return Number(newPrice.toFixed(2));
 	return Number(newPrice.toFixed(0));
 }
 
 export function getMiddleCharacter(str) {
 	if (str === undefined) throw new Error('str is required');
 	if (str.length % 2 === 0)
-	   return str[Number((str.length/2).toFixed(0))-1]+str[Number((str.length/2).toFixed(0))];   
+		return str[Number((str.length/2).toFixed(0))-1]+str[Number((str.length/2).toFixed(0))];   
 	return str[Number((str.length/2).toFixed(0))-1];
 }
 
@@ -53,7 +52,7 @@ export function reverseWord(word) {
 export function reverseAllWords(words) {
 	if (words === undefined) throw new Error('words is required');
 	for (let j=0; j<words.length;j++){
-	  words[j] = words[j].split('').reverse().join('');
+		words[j] = words[j].split('').reverse().join('');
 	}
 	return words;
 }
@@ -67,7 +66,7 @@ export function getMeanScore(scores) {
 	if (scores === undefined) throw new Error('scores is required');
 	const meanScore = eval(scores.join('+'))/scores.length;
 	if (meanScore % 1 !== 0)
-	  return Number(meanScore.toFixed(2));
+		return Number(meanScore.toFixed(2));
 	return Number(meanScore.toFixed(0));
 }
 

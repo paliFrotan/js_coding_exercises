@@ -1,7 +1,7 @@
 import {
   sumMultiples,
-  /*isValidDNA,
-  getComplementaryDNA,
+  isValidDNA,
+  /*getComplementaryDNA,
   isItPrime,
   createMatrix,
   areWeCovered,*/
@@ -18,4 +18,16 @@ describe("someMultiples", () => {
     expect(sumMultiples([])).toBe(0);
   });
 });
+
+describe("isValidDNA", () => {
+    test("returns true if contains only CGTA", () => {
+      expect(isValidDNA("CGTA")).toBe(true);
+      expect(isValidDNA("NCGTA")).toBe(false);
+      expect(isValidDNA("CCCGTAAAA")).toBe(true);
+    });
+  
+    test("returns false if empty array", () => {
+      expect(isValidDNA("")).toBe(false);
+    });
+  });
 

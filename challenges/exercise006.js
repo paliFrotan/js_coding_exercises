@@ -1,3 +1,9 @@
+/* 
+⚠️
+⚠️ See exercise006.md - this time you have to write your own tests! ⚠️
+⚠️
+*/
+
 /**
  * This function will receive an array of numbers and should return the sum
  * of any numbers which are a multiple of 3 or 5
@@ -6,7 +12,10 @@
  */
 export function sumMultiples(arr)  {
 	if (arr === undefined) throw new Error('arr is required');
-	return arr.reduce((a, b) => a + b, 0);
+	return arr.reduce((accumulator, currentValue) => {
+		if (currentValue % 3 === 0 || currentValue % 5 === 0 ) 
+		return (accumulator + currentValue)
+		else return accumulator}, 0);
 };
 
 /**

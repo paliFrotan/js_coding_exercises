@@ -12,10 +12,13 @@
  */
 export function sumMultiples(arr)  {
 	if (arr === undefined) throw new Error('arr is required');
-	return arr.reduce((accumulator, currentValue) => {
-		if (currentValue % 3 === 0 || currentValue % 5 === 0 ) 
-		return (accumulator + currentValue)
-		else return accumulator}, 0);
+	let sum=0;
+	for (let i =0; i<arr.length;i++){
+		let n=arr[i];
+		if ((n % 3 === 0 && n % 5 === 0) || (n % 3 === 0) || (n % 5 === 0))
+			sum= sum+n;
+	}
+	return sum;	
 };
 
 /**

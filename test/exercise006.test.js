@@ -1,10 +1,10 @@
 import {
   sumMultiples,
   isValidDNA,
-  /*getComplementaryDNA,
+  getComplementaryDNA,
   isItPrime,
   createMatrix,
-  areWeCovered,*/
+  areWeCovered,
 } from "../challenges/exercise006";
 
 describe("someMultiples", () => {
@@ -29,5 +29,51 @@ describe("isValidDNA", () => {
     test("returns false if empty array", () => {
       expect(isValidDNA("")).toBe(false);
     });
-  });
+});
 
+describe("getComplementaryDNA", () => {
+    test("returns string complementary string t->a c->G", () => {
+      expect(getComplementaryDNA("CGTA")).toBe("GCAT");
+      expect(getComplementaryDNA("NCGTA")).toBe(null);
+      expect(getComplementaryDNA("CCCGTAAAA")).toBe("GGGCATTTT");
+    });
+  
+    test("returns null if empty array", () => {
+      expect(getComplementaryDNA("")).toBe(null);
+    });
+});
+
+describe("isItPrime", () => {
+    test("returns true if prime Number", () => {
+      expect(isItPrime(1)).toBe(false);
+      expect(isItPrime(2)).toBe(true);
+      expect(isItPrime(5)).toBe(true);
+      expect(isItPrime(37)).toBe(true);
+      expect(isItPrime(39)).toBe(false);
+    });
+  
+    test("returns false if 0", () => {
+      expect(isItPrime(0)).toBe(false);
+    });
+});
+
+describe("createMatrix", () => {
+    test("returns n sided Matrix with fill item second parameter", () => {
+      expect(createMatrix(2,"foo")).toBe([["foo","foo"],["foo","foo"]]);
+    });
+});
+
+
+describe("createMatrix", () => {
+    test("returns n sided Matrix with fill item second parameter", () => {
+        const staff= [
+            { name: "Sally", rota: ["Saturday","Monday", "Tuesday", "Friday"] },
+            { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
+            { name: "Daniel", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
+            ];
+        
+        expect(areWeCovered(staff, "Saturday")).toBe(true);
+        expect(areWeCovered(staff, "Friday")).toBe(false);
+    });
+});
+       

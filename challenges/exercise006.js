@@ -29,7 +29,7 @@ export function sumMultiples(arr)  {
 export function isValidDNA(str) {
 	if (str === undefined) throw new Error('str is required');
 	if (str.length === 0) return false;
-    for (let i=0; i < str.length; ++i){
+    for (let i=0; i < str.length; i++){
 		let ch=str[i];
 		if (ch !== 'A' || ch !=='G' || ch !== 'T' || ch !== 'C') 
 			return false;
@@ -42,8 +42,19 @@ export function isValidDNA(str) {
  * @param {String} str
  * @returns {String}
  */
-export const getComplementaryDNA = (str) => {
+export function getComplementaryDNA(str) {
 	if (str === undefined) throw new Error('str is required');
+	if (str.length === 0) return null;
+    for (let i=0; i < str.length; i++){
+		let ch=str[i];
+		if (ch !== 'A' || ch !=='G' || ch !== 'T' || ch !== 'C') 
+			return null;
+		if (ch === 'A') ch='T';
+		if (ch === 'C') ch='G';
+		if (ch === 'T') ch='A';
+		if (ch === 'G') ch='A';
+	};
+    return str;
 };
 
 /**
@@ -51,8 +62,14 @@ export const getComplementaryDNA = (str) => {
  * @param {Number} n
  * @returns {Boolean}
  */
-export const isItPrime = (n) => {
+export function isItPrime(n) {
 	if (n === undefined) throw new Error('n is required');
+	let isprime = n === 0 ? false: true;
+	if (n === 1 ) isprime = false; else isprime = true;  
+	for(let i=2; i<n; i++){
+		n%i== 0 ? isprime*=false :isprime*=true;
+	};
+	return ((isprime === 1) || (isprime === 2)) ? true: false;
 };
 
 /**
@@ -69,6 +86,7 @@ export const isItPrime = (n) => {
 export const createMatrix = (n, fill) => {
 	if (n === undefined) throw new Error('n is required');
 	if (fill === undefined) throw new Error('fill is required');
+	return  (n) => new Array(n).fill(fill).map((n) => new Array(n).fill(fill));
 };
 
 /**
@@ -86,4 +104,6 @@ export const createMatrix = (n, fill) => {
 export const areWeCovered = (staff, day) => {
 	if (staff === undefined) throw new Error('staff is required');
 	if (day === undefined) throw new Error('day is required');
+	// count staff if day in rota and it has to be >= 3.
+    return  staff.rota.filter(rotaDay => rotaDay === day).length >= 3;
 };

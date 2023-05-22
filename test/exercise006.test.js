@@ -58,8 +58,13 @@ describe("isItPrime", () => {
 });
 
 describe("createMatrix", () => {
-    test("returns n sided Matrix with fill item second parameter", () => {
-      expect(createMatrix(2,"foo")).toBe([["foo","foo"],["foo","foo"]]);
+    test("returns n by n size Matrix with fill item second parameter", () => {
+      expect(createMatrix(2,"foo")).toEqual([["foo","foo"],["foo","foo"]]);
+      expect(createMatrix(3,3)).toEqual([[3,3,3],[3,3,3],[3,3,3]]);
+    });
+
+    test("returns empty array", () => {
+      expect(createMatrix(0,"foo")).toEqual([]);
     });
 });
 
@@ -70,6 +75,7 @@ describe("areWeCovered", () => {
             { name: "Sally", rota: ["Saturday","Monday", "Tuesday", "Friday"] },
             { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
             { name: "Daniel", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
+            { name: "Sara", rota:["Monday"]}
             ];
         
         expect(areWeCovered(staff, "Saturday")).toBe(true);

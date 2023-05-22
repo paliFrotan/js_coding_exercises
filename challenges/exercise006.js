@@ -10,7 +10,7 @@
  * @param {Array} arr
  * @returns {Number}
  */
-export function sumMultiples(arr)  {
+export const sumMultiples = arr =>  {
 	if (arr === undefined) throw new Error('arr is required');
 	let sum=0;
 	for (let i =0; i<arr.length;i++){
@@ -26,13 +26,14 @@ export function sumMultiples(arr)  {
  * @param {String} str
  * @returns {Boolean}
  */
-export function isValidDNA(str) {
+export const isValidDNA = str => {
 	if (str === undefined) throw new Error('str is required');
-	if (str.length === 0) return false;
+	if (!str.length) return false;
     for (let i=0; i < str.length; i++){
 		let ch=str[i];
-		if (ch !== 'A' || ch !=='G' || ch !== 'T' || ch !== 'C') 
+		if (ch !== 'A' && ch !=='G' && ch !== 'T' && ch !== 'C'){
 			return false;
+		};
 	};
     return true;
 };
@@ -42,19 +43,28 @@ export function isValidDNA(str) {
  * @param {String} str
  * @returns {String}
  */
-export function getComplementaryDNA(str) {
+export const getComplementaryDNA = str => {
 	if (str === undefined) throw new Error('str is required');
-	if (str.length === 0) return null;
+	if(!isValidDNA(str)) return null;
+	let newString = "";
     for (let i=0; i < str.length; i++){
 		let ch=str[i];
-		if (ch !== 'A' || ch !=='G' || ch !== 'T' || ch !== 'C') 
-			return null;
-		if (ch === 'A') ch='T';
-		if (ch === 'C') ch='G';
-		if (ch === 'T') ch='A';
-		if (ch === 'G') ch='A';
+		switch (ch){
+			case 'A':
+				ch='T';
+				break;
+			case 'C':
+				ch='G';
+				break;
+		    case 'T':
+				ch='A';
+				break;
+		    case 'G':
+				ch='C';
+		};
+		newString = newString+ch;
 	};
-    return str;
+    return newString;
 };
 
 /**
@@ -62,14 +72,12 @@ export function getComplementaryDNA(str) {
  * @param {Number} n
  * @returns {Boolean}
  */
-export function isItPrime(n) {
+export const isItPrime = (n) => {
 	if (n === undefined) throw new Error('n is required');
-	let isprime = n === 0 ? false: true;
-	if (n === 1 ) isprime = false; else isprime = true;  
-	for(let i=2; i<n; i++){
-		n%i== 0 ? isprime*=false :isprime*=true;
-	};
-	return ((isprime === 1) || (isprime === 2)) ? true: false;
+	if (n <= 1 ) return false;
+	for ( let i = 2 ; i <= n - 1 ; i ++ )
+		if (n % i === 0 ) return false;
+	return true;
 };
 
 /**
@@ -86,7 +94,7 @@ export function isItPrime(n) {
 export const createMatrix = (n, fill) => {
 	if (n === undefined) throw new Error('n is required');
 	if (fill === undefined) throw new Error('fill is required');
-	return  (n) => new Array(n).fill(fill).map((n) => new Array(n).fill(fill));
+	return new Array(n).fill( new Array(n).fill(fill) );
 };
 
 /**
@@ -105,5 +113,12 @@ export const areWeCovered = (staff, day) => {
 	if (staff === undefined) throw new Error('staff is required');
 	if (day === undefined) throw new Error('day is required');
 	// count staff if day in rota and it has to be >= 3.
-    return  staff.rota.filter(rotaDay => rotaDay === day).length >= 3;
+	let count = 0;
+	for (let j =0; j< staff.length;j++)
+		for (let i = 0; i < staff[j].rota.length; i++) {
+			if (staff[j].rota[i] === day) 
+				count++;
+		};
+  	return count >= 3;
+
 };

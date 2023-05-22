@@ -64,8 +64,8 @@ describe("createMatrix", () => {
 });
 
 
-describe("createMatrix", () => {
-    test("returns n sided Matrix with fill item second parameter", () => {
+describe("areWeCovered", () => {
+    test("returns true if 3 members of staff present for certain day", () => {
         const staff= [
             { name: "Sally", rota: ["Saturday","Monday", "Tuesday", "Friday"] },
             { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },

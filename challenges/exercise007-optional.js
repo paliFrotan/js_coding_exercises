@@ -8,6 +8,7 @@
  */
 export const sumDigits = (n) => {
 	if (n === undefined) throw new Error('n is required');
+	return n.toString().split('').map(Number).reduce(function (a,b){return a+b;}, 0);
 };
 
 /**
@@ -21,10 +22,12 @@ export const sumDigits = (n) => {
 export const createRange = (start, end, step) => {
 	if (start === undefined) throw new Error('start is required');
 	if (end === undefined) throw new Error('end is required');
-	if (step === undefined)
-		console.log(
-			"FYI: Optional step parameter not provided. Remove this check once you've handled the optional step!"
-		);
+	if (step === undefined) step = 1;
+	const NewArray =[];
+	for (let i = start; i <= end; i += step){
+		NewArray.push(i);
+	}
+	return NewArray;
 };
 
 /**
@@ -59,6 +62,19 @@ export const createRange = (start, end, step) => {
 export const getScreentimeAlertList = (users, date) => {
 	if (users === undefined) throw new Error('users is required');
 	if (date === undefined) throw new Error('date is required');
+	let resultArr = [];
+	for (let i = 0; i < users.length;i++){
+		let hours = 0;
+		for (let k = 0 ; k< users[i].screenTime.length; k++){
+			if (users[i].screenTime[k].date === date) {
+					for (let value of Object.values(users[i].screenTime[k].usage)) 
+						hours += value;
+			};
+		};
+		if (hours >100)
+			resultArr.push(users[i].username);
+	};
+	return resultArr;
 };
 
 /**
@@ -73,6 +89,9 @@ export const getScreentimeAlertList = (users, date) => {
  */
 export const hexToRGB = (hexStr) => {
 	if (hexStr === undefined) throw new Error('hexStr is required');
+	if (hexStr === "") return null;
+	let rgb = ['0x' + hexStr[1] + hexStr[2] | 0, '0x' + hexStr[3] + hexStr[4] | 0, '0x' + hexStr[5] + hexStr[6] | 0];
+	return "rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")";
 };
 
 /**
@@ -87,4 +106,15 @@ export const hexToRGB = (hexStr) => {
  */
 export const findWinner = (board) => {
 	if (board === undefined) throw new Error('board is required');
+	if (!(board[0][0] === null) && board[0][0] === board[1][1] && board[1][1] === board[2][2])
+        return board[0][0];
+    if (!(board[2][0] === null) && board[2][0] === board[1][1] && board[1][1] === board[0][2])
+        return board[2][0];
+    for (let i=0; i < 3; i++){
+        if (!(board[i][0] === null) && (board[i][0] === board[i][1]) && (board[i][1] === board[i][2]))
+            return board[i][0];
+        if (!(board[0][i] === null) && (board[0][i] === board[1][i]) && (board[1][i] === board[2][i]))
+            return board[0][i];
+	}
+	return(null);
 };

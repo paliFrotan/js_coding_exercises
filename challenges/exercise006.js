@@ -120,5 +120,4 @@ export const areWeCovered = (staff, day) => {
 				count++;
 		};
   	return count >= 3;
-
 };
